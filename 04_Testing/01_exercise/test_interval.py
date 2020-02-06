@@ -10,6 +10,13 @@ from unittest import TestCase
 from .interval import Interval, ordered, overlaps, intersect, union, gaps
 
 
+class IntervalPair:
+
+    def __init__(self, iv_tuple_1, iv_tuple_2):
+        self.iv1 = Interval(iv_tuple_1[0], iv_tuple_1[1])
+        self.iv2 = Interval(iv_tuple_2[0], iv_tuple_2[1])
+
+
 class TestOverlaps(TestCase):
     """
     Simple example of testing the `overlaps` function. This class is for testing this particular functionality but needs
@@ -23,6 +30,11 @@ class TestOverlaps(TestCase):
         self.iv1 = Interval(3, 4)
         self.iv3 = Interval(1, 3)
         self.iv4 = Interval(2, 8)
+        self.non_overlapping_interval_pairs = [
+            IntervalPair((1, 5), (10, 25)),
+            IntervalPair((0, 1), (2, 3)),
+            IntervalPair((-100000, -10000), (100001, 110000)),
+        ]
 
     def test_overlap(self):
         """Test overlaps() on intervals which don overlap."""
@@ -34,7 +46,8 @@ class TestOverlaps(TestCase):
     def test_not_overlap(self):
         """Test overlaps() on intervals which don't overlap."""
         self.assertFalse(overlaps(self.iv0, self.iv1))
-        # test other overlapping intervals, ones with smaller or larger gaps between them
+        for interval_pair in self.non_overlapping_interval_pairs:
+            self.assertFalse(overlaps(interval_pair.iv1, interval_pair.iv2))
         
     def test_ordered(self):
         """
