@@ -28,7 +28,8 @@ class TestOverlaps(TestCase):
         """Test overlaps() on intervals which don overlap."""
         self.assertTrue(overlaps(self.iv3, self.iv1))
         self.assertTrue(overlaps(self.iv3, self.iv4))
-        # test other overlapping intervals, ones with smaller or larger areas of overlap to show overlaps() works in a range of cases
+        # test other overlapping intervals, ones with smaller or larger areas of overlap to show overlaps() works
+        # in a range of cases
         
     def test_not_overlap(self):
         """Test overlaps() on intervals which don't overlap."""
@@ -36,10 +37,11 @@ class TestOverlaps(TestCase):
         # test other overlapping intervals, ones with smaller or larger gaps between them
         
     def test_ordered(self):
-        """Provide tests here to ensure ordered() behaves correctly. This may require multiple tests with different input."""
+        """
+        Provide tests here to ensure ordered() behaves correctly. This may require multiple tests with different input.
+        """
 
     def test_intersect(self):
         """Test intersection with small and large values of overlap, and intervals entirely within the other."""
         
     # However many more tests are needed to ensure all of the code given to you has been executed at least once
-    
