@@ -8,7 +8,8 @@ what it should do, not reflect what it actually does.
 
 from unittest import TestCase
 from .interval import Interval, ordered, overlaps, intersect, union, gaps
-from .input_test_interval import NON_OVERLAPPING_INTERVAL_PAIRS, OVERLAPPING_INTERVAL_PAIRS
+from .input_test_interval import NON_OVERLAPPING_INTERVAL_PAIRS, OVERLAPPING_INTERVAL_PAIRS, \
+    ORDERED_OVERLAPPING_INTERVAL_PAIRS, ORDERED_NON_OVERLAPPING_INTERVAL_PAIRS, UNORDERED_INTERVAL_PAIRS
 
 
 class TestOverlaps(TestCase):
@@ -39,13 +40,17 @@ class TestOverlaps(TestCase):
             self.assertFalse(overlaps(interval_pair.iv1, interval_pair.iv2))
         
     def test_ordered(self):
-        """
-        Provide tests here to ensure ordered() behaves correctly. This may require multiple tests with different input.
-        """
-        raise NotImplementedError()
+        for interval_pair in ORDERED_OVERLAPPING_INTERVAL_PAIRS:
+            self.assertEqual(ordered(interval_pair.iv1, interval_pair.iv2), interval_pair.as_tuple())
+            self.assertEqual(ordered(interval_pair.iv2, interval_pair.iv1), interval_pair.as_tuple())
+        for interval_pair in ORDERED_NON_OVERLAPPING_INTERVAL_PAIRS:
+            self.assertEqual(ordered(interval_pair.iv1, interval_pair.iv2), interval_pair.as_tuple())
+            self.assertEqual(ordered(interval_pair.iv2, interval_pair.iv1), interval_pair.as_tuple())
 
     def test_not_ordered(self):
-        raise NotImplementedError()
+        for interval_pair in UNORDERED_INTERVAL_PAIRS:
+            self.assertEqual(ordered(interval_pair.iv1, interval_pair.iv2), (interval_pair.iv1, interval_pair.iv1))
+            self.assertEqual(ordered(interval_pair.iv2, interval_pair.iv1), (interval_pair.iv2, interval_pair.iv2))
 
     def test_intersect(self):
         """Test intersection with small and large values of overlap, and intervals entirely within the other."""
