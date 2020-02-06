@@ -1,0 +1,7 @@
+language: python
+python:
+  - 3.7
+  - 3.8
+script:
+  - cd 04_Testing/02_exercise
+  - python -m unittest test_tictactoe.py
