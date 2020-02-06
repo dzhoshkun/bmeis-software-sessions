@@ -64,8 +64,31 @@ class TestOverlaps(TestCase):
         """
         Provide tests here to ensure ordered() behaves correctly. This may require multiple tests with different input.
         """
+        raise NotImplementedError()
+
+    def test_not_ordered(self):
+        raise NotImplementedError()
 
     def test_intersect(self):
         """Test intersection with small and large values of overlap, and intervals entirely within the other."""
+        raise NotImplementedError()
+
+    def test_not_intersect(self):
+        raise NotImplementedError()
+
+    def test_union(self):
+        raise NotImplementedError()
+
+    def test_empty_union(self):
+        raise NotImplementedError()
+
+    def test_intervals_with_gaps(self):
+        raise NotImplementedError()
+
+    def test_intervals_with_no_gaps(self):
+        raise NotImplementedError()
+
+    def test_intervals_with_and_without_gaps(self):
+        raise NotImplementedError()
         
     # However many more tests are needed to ensure all of the code given to you has been executed at least once
