@@ -35,13 +35,18 @@ class TestOverlaps(TestCase):
             IntervalPair((0, 1), (2, 3)),
             IntervalPair((-100000, -10000), (100001, 110000)),
         ]
+        self.overlapping_interval_pairs = [
+            IntervalPair((1, 5), (4, 5)),
+            IntervalPair((0, 3), (0, 2)),
+            IntervalPair((-100000, -10000), (-90000, -1000)),
+        ]
 
     def test_overlap(self):
         """Test overlaps() on intervals which don overlap."""
         self.assertTrue(overlaps(self.iv3, self.iv1))
         self.assertTrue(overlaps(self.iv3, self.iv4))
-        # test other overlapping intervals, ones with smaller or larger areas of overlap to show overlaps() works
-        # in a range of cases
+        for interval_pair in self.overlapping_interval_pairs:
+            self.assertTrue(overlaps(interval_pair.iv1, interval_pair.iv2))
         
     def test_not_overlap(self):
         """Test overlaps() on intervals which don't overlap."""
