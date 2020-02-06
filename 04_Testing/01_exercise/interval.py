@@ -52,7 +52,7 @@ def ordered(i0, i1):
 
 def overlaps(i0, i1):
     """Returns True if `i0` and `i1` represent overlapping intervals."""
-    return i0.end() > i1.start() and i1.end() >= i0.start()
+    return (i0.end() > i1.start() and i1.end() >= i0.start()) or (i1.end() > i0.start() and i0.end() >= i1.start())
 
 
 def intersect(i0, i1):
