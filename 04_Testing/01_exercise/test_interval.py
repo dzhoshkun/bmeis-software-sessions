@@ -32,13 +32,19 @@ class TestOverlaps(TestCase):
         self.iv4 = Interval(2, 8)
         self.non_overlapping_interval_pairs = [
             IntervalPair((1, 5), (10, 25)),
-            IntervalPair((0, 1), (2, 3)),
-            IntervalPair((-100000, -10000), (100001, 110000)),
+            IntervalPair((10, 25), (1, 5)),
+            IntervalPair((10, 25), (26, 34)),
+            IntervalPair((26, 34), (10, 25)),
         ]
         self.overlapping_interval_pairs = [
-            IntervalPair((1, 5), (4, 5)),
-            IntervalPair((0, 3), (0, 2)),
-            IntervalPair((-100000, -10000), (-90000, -1000)),
+            IntervalPair((1, 10), (8, 15)),
+            IntervalPair((8, 15), (1, 10)),
+            IntervalPair((8, 15), (15, 25)),
+            IntervalPair((15, 25), (8, 15)),
+            IntervalPair((-5, 3), (1, 10)),
+            IntervalPair((1, 10), (-5, 3)),
+            IntervalPair((-5, 1), (1, 10)),
+            IntervalPair((1, 10), (-5, 1)),
         ]
 
     def test_overlap(self):
