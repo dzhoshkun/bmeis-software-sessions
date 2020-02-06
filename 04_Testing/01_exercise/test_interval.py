@@ -7,7 +7,7 @@ what it should do, not reflect what it actually does.
 """
 
 from unittest import TestCase
-from interval import Interval, ordered, overlaps, intersect, union, gaps
+from .interval import Interval, ordered, overlaps, intersect, union, gaps
 
 
 class TestOverlaps(TestCase):
