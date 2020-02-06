@@ -8,13 +8,7 @@ what it should do, not reflect what it actually does.
 
 from unittest import TestCase
 from .interval import Interval, ordered, overlaps, intersect, union, gaps
-
-
-class IntervalPair:
-
-    def __init__(self, iv_tuple_1, iv_tuple_2):
-        self.iv1 = Interval(iv_tuple_1[0], iv_tuple_1[1])
-        self.iv2 = Interval(iv_tuple_2[0], iv_tuple_2[1])
+from .input_test_interval import NON_OVERLAPPING_INTERVAL_PAIRS, OVERLAPPING_INTERVAL_PAIRS
 
 
 class TestOverlaps(TestCase):
@@ -30,34 +24,18 @@ class TestOverlaps(TestCase):
         self.iv1 = Interval(3, 4)
         self.iv3 = Interval(1, 3)
         self.iv4 = Interval(2, 8)
-        self.non_overlapping_interval_pairs = [
-            IntervalPair((1, 5), (10, 25)),
-            IntervalPair((10, 25), (1, 5)),
-            IntervalPair((10, 25), (26, 34)),
-            IntervalPair((26, 34), (10, 25)),
-        ]
-        self.overlapping_interval_pairs = [
-            IntervalPair((1, 10), (8, 15)),
-            IntervalPair((8, 15), (1, 10)),
-            IntervalPair((8, 15), (15, 25)),
-            IntervalPair((15, 25), (8, 15)),
-            IntervalPair((-5, 3), (1, 10)),
-            IntervalPair((1, 10), (-5, 3)),
-            IntervalPair((-5, 1), (1, 10)),
-            IntervalPair((1, 10), (-5, 1)),
-        ]
 
     def test_overlap(self):
         """Test overlaps() on intervals which don overlap."""
         self.assertTrue(overlaps(self.iv3, self.iv1))
         self.assertTrue(overlaps(self.iv3, self.iv4))
-        for interval_pair in self.overlapping_interval_pairs:
+        for interval_pair in OVERLAPPING_INTERVAL_PAIRS:
             self.assertTrue(overlaps(interval_pair.iv1, interval_pair.iv2))
         
     def test_not_overlap(self):
         """Test overlaps() on intervals which don't overlap."""
         self.assertFalse(overlaps(self.iv0, self.iv1))
-        for interval_pair in self.non_overlapping_interval_pairs:
+        for interval_pair in NON_OVERLAPPING_INTERVAL_PAIRS:
             self.assertFalse(overlaps(interval_pair.iv1, interval_pair.iv2))
         
     def test_ordered(self):
